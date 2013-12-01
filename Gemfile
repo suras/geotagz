@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
@@ -49,6 +49,31 @@ end
 
 gem 'geocoder'
 
+gem 'devise'
+
+gem 'cancan'
+
+gem 'angularjs-rails'
+
+gem 'rails_layout'
+
+gem 'foundation-rails'
+
+
+group :test do
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'cucumber'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+end
+
+
+gem 'gmaps4rails'
+
+gem 'polylines'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
