@@ -10,6 +10,12 @@ class LocationsController < ApplicationController
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @hash = Gmaps4rails.build_markers(@location) do |location, marker|
+    marker.lat location.latitude
+    marker.lng location.longitude
+    marker.infowindow "<img src=/uploads/location/image/"+location.image.gwep.file.identifier+".webp"+" style='width:300px;height:200px'/>"
+    marker.title "#{location.address}"
+      end
   end
 
   # GET /locations/new
@@ -69,6 +75,6 @@ class LocationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:address, :latitude, :longitude)
+      params.require(:location).permit(:address, :latitude, :longitude, :image)
     end
 end

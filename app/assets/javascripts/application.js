@@ -17,6 +17,8 @@
 //= require angular
 //= require angular-animate
 //= require angular-resource
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 $(function() {
   $(document).foundation();

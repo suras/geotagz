@@ -61,11 +61,17 @@ gem 'compass-rails', '~> 2.0.alpha.0'
 
 gem 'foundation-rails'
 
+gem "mini_magick"
+
+gem 'underscore-rails'
+
 gem 'sprockets-webp'
 
 gem 'carrierwave'
 
 gem 'carrierwave-webp'
+
+
 
 
 group :test do
