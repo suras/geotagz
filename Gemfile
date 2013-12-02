@@ -57,7 +57,15 @@ gem 'angularjs-rails'
 
 gem 'rails_layout'
 
+gem 'compass-rails', '~> 2.0.alpha.0'
+
 gem 'foundation-rails'
+
+gem 'sprockets-webp'
+
+gem 'carrierwave'
+
+gem 'carrierwave-webp'
 
 
 group :test do
