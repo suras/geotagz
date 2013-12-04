@@ -13,7 +13,9 @@ class LocationsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@location) do |location, marker|
     marker.lat location.latitude
     marker.lng location.longitude
+    if location.image.gwep.present?
     marker.infowindow "<img src=/uploads/location/image/"+location.image.gwep.file.identifier+".webp"+" style='width:300px;height:200px'/>"
+    end
     marker.title "#{location.address}"
       end
   end
