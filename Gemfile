@@ -57,9 +57,7 @@ gem 'angularjs-rails'
 
 gem 'rails_layout'
 
-gem 'compass-rails', '~> 2.0.alpha.0'
-
-gem 'foundation-rails'
+gem 'bootstrap-sass'
 
 gem "mini_magick"
 
