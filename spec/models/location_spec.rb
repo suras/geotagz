@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Location do 
+	self.use_transactional_fixtures = false
 
 	before(:each) do 
 	@attr = {
@@ -13,7 +14,7 @@ describe Location do
 		@location = Location.create!(@attr)
 		@location.should respond_to(:latitude)
 		@location.should respond_to(:longitude)
-		@location.latitude should be > 1
-		@location.longitude should be > 1
+		@location.latitude.to_i.should be > 1
+		@location.longitude.to_i.should be > 1
 	end
 end
