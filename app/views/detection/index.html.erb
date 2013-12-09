@@ -1,0 +1,97 @@
+
+
+
+<script>
+var x=document.getElementById("geoattrs");
+$(document).ready(function(){
+
+     getLocation();
+
+});
+
+
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+ // x.innerHTML="Latitude: " + position.coords.latitude + 
+ // "<br>Longitude: " + position.coords.longitude;
+
+  googleGeocoder(position.coords.latitude, position.coords.longitude);	
+  }
+
+
+ function googleGeocoder(lat, lon){
+      
+    var coordinates = lat+","+lon;
+
+    var geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+coordinates+"&sensor=false";
+     $.get(geocode_url, function( data ) {
+		var add = data.results[0].address_components
+		//console.log(data.results[0].address_components);
+		console.log(add[1].long_name);  // place
+		console.log(add[3].long_name); // street
+		console.log(add[4].long_name); //city
+		console.log(add[6].long_name); // state
+		console.log(add[7].long_name); // country
+
+		saveAddress(add, lat, lon)
+	});
+
+
+  }
+
+
+  function saveAddress(add, lat, lon)
+  {
+       var os = getOs();
+       var browser = $.browser.name;
+       var data = { info:{country:add[7].long_name, state:add[6].long_name, city:add[4].long_name, street:add[1].long_name+" "+add[3].long_name, latitude:lat, longitude:lon, browser:browser, os:os}};
+	   $.ajax({
+		type: "POST",
+		url: "/save_address",
+		data: data,
+		success: function(data){
+
+			alert("your location details:"+ data);
+		}
+		
+	});
+
+  }
+
+
+function getOs()
+{
+
+   	var OSName="unknown OS";
+	if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+	if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+	if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+	if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    return OSName;
+
+}
+ 
+</script>
+
+<div id ="geoattrs">
+
+
+</div>
+
+
+<div id ="location">
+
+
+</div>
+
+
+
+

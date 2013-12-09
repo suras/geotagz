@@ -1,6 +1,10 @@
 Geotagz::Application.routes.draw do
+  get "detection/index"
   root to: 'locations#index'
   resources :locations
+
+  get "/detection", :to => "detection#index"
+  post "/save_address", :to => "detection#save_address"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
